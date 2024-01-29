@@ -1,0 +1,9 @@
+- id: mypy
+  name: mypy
+  description: ''
+  entry: pre-commit-mypy-wrapper
+  language: python
+  types_or: [python, pyi]
+  require_serial: true
+  additional_dependencies: []
+  minimum_pre_commit_version: '2.9.2'

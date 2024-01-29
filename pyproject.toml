@@ -1,0 +1,12 @@
+[project]
+name = 'pre_commit_mypy_wrapper'
+version = '0.0.0'
+
+[project.scripts]
+    pre-commit-mypy-wrapper = 'pre_commit_mypy_wrapper.__main__:main'
+
+[project.optional-dependencies]
+    dev = [
+        'mypy',
+        'pytest',
+    ]
