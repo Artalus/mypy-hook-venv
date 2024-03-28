@@ -22,9 +22,12 @@ def main() -> int:
 
     config = Config.load_or_detect()
 
-    cmd = [config.mypy]
-    if config.python:
-        cmd.extend(['--python-executable', config.python])
+    if config.mypy is None:
+        cmd = [config.python, '-m', 'mypy']
+    else:
+        cmd = [config.mypy]
+        if config.python:
+            cmd.extend(['--python-executable', config.python])
     cmd.extend(script_args)
 
     log('Will run:')
@@ -60,6 +63,9 @@ class Config:
             config = Config(mypy=None, python=None)
 
         if config.mypy is None:
+            if config.python is not None:
+                log(f'`python` specified without `mypy` - using `{config.python} -m mypy`')
+                return config
             if cfg.is_file():
                 log('WARNING: path to `mypy` not specified in config')
             which = shutil.which('mypy')
