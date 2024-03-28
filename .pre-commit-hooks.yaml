@@ -1,6 +1,6 @@
 - id: mypy
   name: mypy
-  description: ''
+  description: run mypy from your environment, properly detecting imports and types
   entry: pre-commit-mypy-wrapper
   language: python
   types_or: [python, pyi]
